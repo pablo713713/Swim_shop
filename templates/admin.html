@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="admin-menu">
+        <h1>Panel de Administración</h1>
+
+        <p>¿Qué deseas hacer?</p>
+
+        <ul>
+            <li><a href="/admin/create">Crear nuevo producto</a></li>
+            <li><a href="/admin/update">Actualizar un producto existente</a></li>
+            <li><a href="/admin/delete">Eliminar un producto</a></li>
+        </ul>
+
+        <a href="/">Volver a inicio</a>
+    </div>
+</body>
+
+</html>

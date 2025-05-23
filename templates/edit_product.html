@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<div class="editar-prodcuto">
+    <body>
+        <h1>Editar Producto</h1>
+
+        <form action="/admin/update/{{ producto._id }}" method="POST">
+            <label for="nombre">Nombre del producto:</label><br>
+            <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" required><br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" required>{{ producto.descripcion }}</textarea><br><br>
+
+            <label for="precio">Precio:</label><br>
+            <input type="number" id="precio" name="precio" step="0.01" value="{{ producto.precio }}" required><br><br>
+
+            <label for="categoria">Categoría:</label><br>
+            <select id="categoria" name="categoria" required>
+                <option value="gorras" {% if producto.categoria == 'gorras' %}selected{% endif %}>Gorras</option>
+                <option value="lentes" {% if producto.categoria == 'lentes' %}selected{% endif %}>Lentes</option>
+                <option value="mallas" {% if producto.categoria == 'mallas' %}selected{% endif %}>Mallas</option>
+                <option value="paletas" {% if producto.categoria == 'paletas' %}selected{% endif %}>Paletas</option>
+            </select><br><br>
+
+            <label for="colores">Colores disponibles (separados por comas):</label><br>
+            <input type="text" id="colores" name="colores" value="{{ producto.colores | join(', ') }}" required><br><br>
+
+            <label for="imagenes">URLs de imágenes por color (separados por comas en el mismo orden):</label><br>
+            <input type="text" id="imagenes" name="imagenes" value="{{ producto.imagenes.values() | join(', ') }}" required><br><br>
+
+            <button type="submit">Actualizar Producto</button>
+        </form>
+
+        <br>
+        <a href="/admin/update">Volver a la lista de productos</a>
+    </body>
+</div>
+</html>

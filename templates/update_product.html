@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="lista-productos">
+        <h1>Actualizar Productos</h1>
+
+        <ul>
+            {% for producto in productos %}
+                <li>
+                    <strong>{{ producto.nombre }}</strong>
+                    <a href="/admin/update/{{ producto._id }}">Editar</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="/admin">Volver al panel de administración</a>
+    </div>
+</body>
+</html>

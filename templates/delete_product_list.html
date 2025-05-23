@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="eliminar-productos">
+        <h1>Eliminar Productos</h1>
+
+        <ul>
+            {% for producto in productos %}
+                <li>
+                    <strong>{{ producto.nombre }}</strong>
+                    <form action="/admin/delete/{{ producto._id }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="/admin">Volver al panel de administración</a>
+    </div>
+</body>
+</html>

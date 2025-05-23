@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <h1>Tu Carrito</h1>
+
+    {% if carrito %}
+        <div class="carrito-grid">
+            {% set total = 0 %}
+            {% for item in carrito %}
+                {% set subtotal = item.precio * item.cantidad %}
+                {% set total = total + subtotal %}
+
+                <div class="carrito-item">
+                    <h3>{{ item.nombre }}</h3>
+                    <p>Cantidad: {{ item.cantidad }}</p>
+                    <p>Precio unitario: ${{ item.precio }}</p>
+                    <p><strong>Subtotal:</strong> ${{ subtotal }}</p>
+
+                    <form action="/eliminar_del_carrito" method="POST">
+                        <input type="hidden" name="nombre" value="{{ item.nombre }}">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="total-box">
+            <h2>Total a pagar: ${{ total }}</h2>
+
+            <form action="/checkout" method="GET">
+                <button>Pagar</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+    {% endif %}
+
+    <a href="/">← Seguir comprando</a>
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+        {% if mensajes %}
+            {% for categoria, mensaje in mensajes %}
+                <div style="color: {% if categoria == 'success' %}green{% else %}red{% endif %}; margin-top: 1rem;">
+                    {{ mensaje }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

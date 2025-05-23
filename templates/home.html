@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Swim Shop - Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Bienvenido a Swim Shop</h1>
+    <p>Compra material de natación en línea.</p>
+    <div style="margin-bottom: 20px;">
+        <a href="/admin">
+            <button>Ingresar como Administrador</button>
+        </a>
+    </div>
+
+    <h2>Categorías</h2>
+    <div class="categorias-grid">
+        <div class="categoria-card">
+            <img src="{{ url_for('static', filename='img/gorra.jpg') }}" alt="Gorras">
+            <a href="/categoria/gorras"><button>Gorras</button></a>
+        </div>
+        <div class="categoria-card">
+            <img src="{{ url_for('static', filename='img/lentes.jpg') }}" alt="Lentes">
+            <a href="/categoria/lentes"><button>Lentes</button></a>
+        </div>
+        <div class="categoria-card">
+            <img src="{{ url_for('static', filename='img/mallas.jpg') }}" alt="Mallas">
+            <a href="/categoria/mallas"><button>Mallas</button></a>
+        </div>
+        <div class="categoria-card">
+            <img src="{{ url_for('static', filename='img/paletas.jpg') }}" alt="Paletas">
+            <a href="/categoria/paletas"><button>Paletas</button></a>
+        </div>
+    </div>
+    
+
+    <a href="/carrito">Ver carrito</a>
+</body>
+</html>

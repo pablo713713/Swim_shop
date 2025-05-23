@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="crear-producto">
+        <h1>Crear Nuevo Producto</h1>
+
+        <form action="/admin/create" method="POST">
+            <label for="nombre">Nombre del producto:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
+
+            <label for="precio">Precio:</label><br>
+            <input type="number" id="precio" name="precio" step="0.01" required><br><br>
+
+            <label for="categoria">Categoría:</label><br>
+            <select id="categoria" name="categoria" required>
+                <option value="gorras">Gorras</option>
+                <option value="lentes">Lentes</option>
+                <option value="mallas">Mallas</option>
+                <option value="paletas">Paletas</option>
+            </select><br><br>
+
+            <label for="colores">Colores disponibles (separados por comas):</label><br>
+            <input type="text" id="colores" name="colores" placeholder="Ejemplo: azul, rojo, verde" required><br><br>
+
+            <label for="imagenes">URLs de imágenes por color (separados por comas en el mismo orden):</label><br>
+            <input type="text" id="imagenes" name="imagenes" placeholder="Ejemplo: url_azul.jpg, url_rojo.jpg, url_verde.jpg" required><br><br>
+
+            <button type="submit">Crear Producto</button>
+        </form>
+
+        <br>
+        <a href="/admin">Volver al panel de administración</a>
+    </div>
+    
+</body>
+</html>
