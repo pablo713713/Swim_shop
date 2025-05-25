@@ -30,7 +30,18 @@ Este proyecto es una tienda en línea desarrollada para una empresa que vende ma
 - **Frontend**: HTML, CSS
 
 ---
+##  📁 Cómo iniciar la base de datos MongoDB localmente
+# Crear la carpeta para la base de datos si no existe
+  mkdir C:\data\db
+  Write-Output "Carpeta C:\data\db creada."
 
+
+# Abrir una nueva ventana PowerShell y arrancar mongod
+Start-Process powershell -ArgumentList '-NoExit', '"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="C:\data\db"'
+
+# Abrir otra nueva ventana PowerShell y conectar con mongosh
+Start-Process powershell -ArgumentList '-NoExit', 'mongosh'
+---
 ## 📁 Estructura de la Base de Datos
 
 **Nombre de la base de datos:** `swim_shop`  
