@@ -192,6 +192,53 @@ def eliminar_producto(id):
     return redirect(url_for('listar_productos_para_eliminar'))
 
 
+@app.route('/buscar', methods=['GET'])
+def buscar_productos():
+    # Recibir filtros desde la URL
+    marca = request.args.get('marca', '').strip()
+    precio_min = request.args.get('precio_min')
+    precio_max = request.args.get('precio_max')
+    color = request.args.get('color', '').strip()
+
+    # Construir la consulta de MongoDB
+    filtro = {}
+
+    # Marca: se busca en el nombre del producto como palabra
+    if marca:
+        filtro["nombre"] = {"$regex": rf"\b{marca}\b", "$options": "i"}
+
+    # Precio mínimo y máximo
+    if precio_min or precio_max:
+        filtro["precio"] = {}
+        if precio_min:
+            filtro["precio"]["$gte"] = float(precio_min)
+        if precio_max:
+            filtro["precio"]["$lte"] = float(precio_max)
+
+    # Color dentro del array de colores
+    if color:
+        filtro["colores"] = color
+
+    productos_filtrados = list(mongo.db.productos.find(filtro))
+
+    # Obtener todas las marcas y colores para los select
+    todos_productos = mongo.db.productos.find()
+    marcas = set()
+    colores = set()
+    for p in todos_productos:
+        palabras = p['nombre'].split()
+        if len(palabras) >= 2:
+            marcas.add(palabras[1])
+        colores.update(p.get('colores', []))
+
+    return render_template(
+        'search_products.html',
+        marcas=sorted(marcas),
+        colores=sorted(colores),
+        resultados=productos_filtrados
+    )
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
