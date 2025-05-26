@@ -37,10 +37,11 @@ Este proyecto es una tienda en línea desarrollada para una empresa que vende ma
 
 
 # Abrir una nueva ventana PowerShell y arrancar mongod
-Start-Process powershell -ArgumentList '-NoExit', '"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath="C:\data\db"'
+```& "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db```
+
 
 # Abrir otra nueva ventana PowerShell y conectar con mongosh
-Start-Process powershell -ArgumentList '-NoExit', 'mongosh'
+```mongosh```
 ---
 ## 📁 Estructura de la Base de Datos
 
