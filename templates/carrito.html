@@ -11,10 +11,10 @@
 
     {% if carrito %}
         <div class="carrito-grid">
-            {% set total = 0 %}
+            {% set ns = namespace(total=0) %}
             {% for item in carrito %}
                 {% set subtotal = item.precio * item.cantidad %}
-                {% set total = total + subtotal %}
+                {% set ns.total = ns.total + subtotal %}
 
                 <div class="carrito-item">
                     <h3>{{ item.nombre }}</h3>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="total-box">
-            <h2>Total a pagar: ${{ total }}</h2>
+            <h2>Total a pagar: ${{ ns.total }}</h2>
 
             <form action="/checkout" method="GET">
                 <button>Pagar</button>
