@@ -40,9 +40,13 @@
     {% else %}
         <p>Tu carrito está vacío.</p>
     {% endif %}
-
-    <a href="/">← Seguir comprando</a>
-
+    <br>
+    
+    <div style="margin-bottom: 20px;">
+    <a href="/">
+        <button>← Seguir comprando </button>
+    </a>
+    </div>
     {% with mensajes = get_flashed_messages(with_categories=true) %}
         {% if mensajes %}
             {% for categoria, mensaje in mensajes %}
